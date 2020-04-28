@@ -122,25 +122,25 @@ namespace ServerTools
             try
             {
                 string[] _files = Directory.GetFiles(SaveDirectory, "*", SearchOption.AllDirectories);
-                Pathfinding.Ionic.Zlib.CompressionLevel _compression = Pathfinding.Ionic.Zlib.CompressionLevel.Default;
+                Ionic.Zlib.CompressionLevel _compression = Ionic.Zlib.CompressionLevel.Default;
                 if (Compression_Level == 0)
                 {
-                    _compression = Pathfinding.Ionic.Zlib.CompressionLevel.None;
+                    _compression = Ionic.Zlib.CompressionLevel.None;
                 }
                 else if (Compression_Level == 1)
                 {
-                    _compression = Pathfinding.Ionic.Zlib.CompressionLevel.BestSpeed;
+                    _compression = Ionic.Zlib.CompressionLevel.BestSpeed;
                 }
                 else if (Compression_Level >= 2)
                 {
-                    _compression = Pathfinding.Ionic.Zlib.CompressionLevel.BestCompression;
+                    _compression = Ionic.Zlib.CompressionLevel.BestCompression;
                 }
                 ChatHook.ChatMessage(null, LoadConfig.Chat_Response_Color + "Starting auto backup. You might experience periods of lag and slow down until complete" + "[-]", -1, LoadConfig.Server_Response_Name, EChatType.Global, null);
                 string _location = _destinationDirInfo.FullName + string.Format("/Backup_{0}", DateTime.Now.ToString("MM-dd-yy_HH-mm"));
                 string _name = string.Format("Backup_{0}", DateTime.Now.ToString("MM-dd-yy_HH-mm"));
-                using (Pathfinding.Ionic.Zip.ZipFile zip = new Pathfinding.Ionic.Zip.ZipFile(_location))
+                using (Ionic.Zip.ZipFile zip = new Ionic.Zip.ZipFile(_location))
                 {
-                    zip.UseZip64WhenSaving = Pathfinding.Ionic.Zip.Zip64Option.Always;
+                    zip.UseZip64WhenSaving = Ionic.Zip.Zip64Option.Always;
                     zip.CompressionLevel = _compression;
                     zip.ParallelDeflateThreshold = -1;
                     for (int i = 0; i < _files.Length; i++)
